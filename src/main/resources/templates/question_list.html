@@ -9,6 +9,11 @@
         </tr>
         </thead>
         <tbody>
+            <tr th:each ="q : ${questionList}">
+                <td th:text="${q.id}"></td>
+                <td>빈칸</td>
+                <td th:text="${q.createDate}"></td>
+            </tr>
 
         </tbody>
     </table>
