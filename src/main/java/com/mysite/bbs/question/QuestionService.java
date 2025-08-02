@@ -1,5 +1,6 @@
 package com.mysite.bbs.question;
 
+import com.mysite.bbs.DataNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -27,7 +28,7 @@ public class QuestionService {
     public Question getQuestion(Integer id) {
         Optional<Question> oq = questionRepository.findById(id);
         if(oq.isEmpty()){
-            return null;
+           throw new DataNotFoundException("question not found");
         }
         return oq.get();
     }
