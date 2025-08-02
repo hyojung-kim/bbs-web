@@ -7,5 +7,28 @@
         <div>
             <div th:text="${#temporals.format(q.createDate, 'YYYY/MM/dd')}"></div>
         </div>
+        <h5 th:if="${q != null and q.answerList != null}"
+            th:text="|${#lists.size(q.answerList)}개의 답변이 있습니다.|">
+        </h5>
+
+        <h5 th:unless="${q != null and q.answerList != null}">
+            답변이 없습니다.
+        </h5>
+        <div th:each="answer : ${q.answerList}">
+            <div th:text="${answer.content}"></div>
+            <div th:text="${#temporals.format(answer.createDate, 'yyyy-MM-dd HH:mm')}"></div>
+        </div>
+
+        <form th:action="@{|/answer/create/${q.id}|}" method="post" th:object="${answerForm}">
+            <div th:replace="~{form_errors :: formErrorsFragment}"></div>
+            <textarea th:field="*{content}" rows="10"></textarea>
+            <input type="submit" value="답변등록">
+        </form>
+
     </div>
+
+
+
+
+
 </html>

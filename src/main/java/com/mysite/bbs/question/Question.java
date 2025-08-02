@@ -1,10 +1,12 @@
 package com.mysite.bbs.question;
 
+import com.mysite.bbs.answer.Answer;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @Getter
@@ -22,6 +24,6 @@ public class Question {
 
     private LocalDateTime createDate;
 
-//    @OneToMany(mappedBy = "question", cascade = CascadeType.REMOVE, fetch = FetchType.EAGER)
-//    private List<> List;
+    @OneToMany(mappedBy = "question", cascade = CascadeType.REMOVE, fetch = FetchType.EAGER)
+    private List<Answer> answerList;
 }

@@ -1,5 +1,6 @@
 package com.mysite.bbs.question;
 
+import com.mysite.bbs.answer.AnswerForm;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -35,12 +36,11 @@ private final QuestionService questionService;
         if(bindingResult.hasErrors()){
             return "question_form";
         }
-
         questionService.create(questionForm);
         return "question_form";
     }
     @GetMapping("/detail/{id}")
-    public String getQuestion(Model model, @PathVariable("id") Integer id){
+    public String getQuestion(Model model, @PathVariable("id") Integer id, AnswerForm answerForm){
         Question question = questionService.getQuestion(id);
         model.addAttribute("q",question);
         return "question_detail";
