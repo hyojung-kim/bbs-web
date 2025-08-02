@@ -1,6 +1,6 @@
 <div>
-    <table class="table">
-        <thead class="table-dark">
+    <table>
+        <thead>
         <tr>
             <th>번</th>
             <th>제목</th>
@@ -8,12 +8,15 @@
         </tr>
         </thead>
         <tbody>
-            <tr th:each ="q : ${questionList}">
-                <td th:text="${q.id}"></td>
-                <td th:text="${q.subject}"></td>
-                <td th:text="${q.createDate}"></td>
+            <tr th:each ="q, loop : ${questionList}">
+                <td th:text="${loop.count}"></td>
+                <td>
+                    <a th:href="@{|/question/detail/${q.id}|}" th:text="${q.subject}"></a>
+                </td>
+<!--                <td th:text="${q.subject}"></td>-->
+                <td th:text="${#temporals.format(q.createDate, 'yyyy년MM월dd일 HH시mm분')}"></td>
             </tr>
         </tbody>
     </table>
-    <a href="/question/create">게시글 등록</a>
+    <a th:href="@{/question/create}">게시글 등록</a>
 </div>

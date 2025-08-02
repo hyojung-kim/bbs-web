@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
 
 @RequiredArgsConstructor
 @Service
@@ -21,5 +22,13 @@ public class QuestionService {
         q.setContent(questionForm.getContent());
         q.setCreateDate(LocalDateTime.now());
         questionRepository.save(q);
+    }
+
+    public Question getQuestion(Integer id) {
+        Optional<Question> oq = questionRepository.findById(id);
+        if(oq.isEmpty()){
+            return null;
+        }
+        return oq.get();
     }
 }
