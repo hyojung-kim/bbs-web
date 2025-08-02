@@ -1,0 +1,16 @@
+<html layout:decorate="~{layout}">
+<div layout:fragment="content">
+    <h5>게시글등록</h5>
+    <form th:action="@{/question/create}" th:object="${questionForm}" method="post">
+        <div role="alert" th:if="${#fields.hasAnyErrors()}">
+            <div th:text="${#fields.allErrors()[0]}"></div>
+        </div>
+        <label for="subject">제목</label>
+        <input th:field="*{subject}" type="text">
+        <label for="content">내용</label>
+        <textarea th:field="*{content}"></textarea>
+        <input type="submit" value="저장">
+    </form>
+</div>
+
+</html>

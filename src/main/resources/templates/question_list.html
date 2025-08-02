@@ -1,9 +1,8 @@
-
 <div>
     <table class="table">
         <thead class="table-dark">
         <tr>
-            <th>번호</th>
+            <th>번</th>
             <th>제목</th>
             <th>작성일시</th>
         </tr>
@@ -11,10 +10,10 @@
         <tbody>
             <tr th:each ="q : ${questionList}">
                 <td th:text="${q.id}"></td>
-                <td>빈칸</td>
+                <td th:text="${q.subject}"></td>
                 <td th:text="${q.createDate}"></td>
             </tr>
-
         </tbody>
     </table>
+    <a href="/question/create">게시글 등록</a>
 </div>
